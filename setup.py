@@ -18,7 +18,7 @@ URL = 'https://github.com/jianbinl/dmapp'
 EMAIL = 'kooglee2@gmail.com'
 AUTHOR = 'Joey Lee'
 REQUIRES_PYTHON = '>=3.9.12'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
