@@ -1,7 +1,8 @@
 # coding - utf-8
+
 import pandas as pd
-from parrot.data_preprocess import preprocessor
-from parrot.data_preprocess import DataPreprocessor
+from dmapp.data_preprocess import preprocessor
+from dmapp.data_preprocess import DataPreprocessor
 
 
 if __name__ == '__main__':
