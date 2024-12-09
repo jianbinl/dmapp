@@ -61,48 +61,19 @@ class DataPreprocessor:
     Data preprocess dataset
     """
 
-    def __init__(self, data):
-        self.data = check_data(data)
-        self.data_shape = self.data.shape
-        self.object_features = [c for c in self.data.columns if self.data[c].dtype == 'object']
-        self.numeric_features = [c for c in self.data.columns if self.data[c].dtype
+    def __init__(self):
+        ...
+
+    @classmethod
+    def overview(cls, x: pd.DataFrame) -> None:
+        data_shape = x.shape
+        object_features = [c for c in x.columns if x[c].dtype == 'object']
+        numeric_features = [c for c in x.columns if x[c].dtype
                                  in ['float64', 'int64', 'float32', 'int32']]
-
-    def quick_preprocess(self, drop_na_features=False, feature_na_ratio=None,
-                         drop_na_samples=False, sample_na_ratio=None) -> pd.DataFrame:
-        """
-
-        Parameters
-        ----------
-        drop_na_features: bool, default: False
-            if drop features contain null values.
-        feature_na_ratio: float, default: None
-            drop columns when the percentage of null values in columns is grater than ratio.
-        drop_na_samples: bool, default: False
-            if drop rows contain null values.
-        sample_na_ratio: float, default: None
-            drop rows when the percentage of null values in rows is grater than ratio.
-
-        Returns
-        -------
-        x: pd.DataFrame
-            A new dataframe after process
-        """
-        print(f"{'*' * 50} Start Preprocessing {'*' * 45}")
-        self.overview()
-        x = self.drop_features_unchanged(self.data)
-        if drop_na_features:
-            x = self.drop_na(x, axis=1, ratio=feature_na_ratio)
-        if drop_na_samples:
-            x = self.drop_na(x, axis=0, ratio=sample_na_ratio)
-        print(f"{'*' * 50} End Preprocess {'*' * 50}")
-        return x
-
-    def overview(self) -> None:
         print(f'===== Data overview: \n'
-              f'data shape: {self.data_shape}\n'
-              f'object features: {self.object_features}\n'
-              f'numeric features: {self.numeric_features}')
+              f'data shape: {data_shape}\n'
+              f'object features: {object_features}\n'
+              f'numeric features: {numeric_features}')
 
     @staticmethod
     def drop_features_unchanged(x: pd.DataFrame) -> pd.DataFrame:
